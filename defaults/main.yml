@@ -1,0 +1,20 @@
+---
+
+unattended_blacklist    : []
+
+unattended_origins      :
+   security  : true
+   updates   : false
+   proposed  : false
+   backports : false
+
+unattended_autofix          : true
+unattended_steps            : false
+unattended_shutdown         : false
+unattended_mail             : "root"
+unattended_mail_error       : false
+unattended_remove_unused    : false
+unattended_automatic_reboot : false
+
+# Set to Integer representing kb/sec limit else false
+unattended_download_limit   : false
