@@ -21,7 +21,7 @@ Ansible apt role which manages apt on a ubuntu/debian systems, it has two functi
 ---
 ## *********** Apt config ***********
 apt_update_source_list        : "no"  # Deploy Apt source.list ['no', 'copy', 'template']
-apt_update_source_list_mirror : "http://us.archive.ubuntu.com/ubuntu/" # apt mirror only works with apt_update_source_list='template'
+apt_update_source_list_mirror : "http://us.archive.ubuntu.com/ubuntu/" # apt mirror only works with  apt_update_source_list='template' mirror list launchpad.net/ubuntu/+archivemirrors
 apt_cache_valid_time          : 3600  # apt cache validity 
 apt_autoremove                : yes   # remove left over dependencies of packages no longer have
 apt_autoclean                 : yes   # clears out the local repository of retrieved package files
