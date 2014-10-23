@@ -1,0 +1,50 @@
+---
+
+- name: APT | Ensure the "standard" sources list /etc/apt/sources.list is updated
+  copy:
+    src: sources.list
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: 0644
+  when: apt_update_source_list == "copy"
+
+- name: APT | Ensure the "mirror" sources list in /etc/apt/sources.list is updated
+  template:
+    src:  sources.list.j2
+    dest: /etc/apt/sources.list
+    owner: root
+    group: root
+    mode: 0644
+  when: apt_update_source_list == "template"
+
+- name: APT | Update the apt cache 1st
+  apt:
+    update_cache: yes
+    cache_valid_time: "{{apt_cache_valid_time}}"
+  ignore_errors: true
+
+- name: APT | Remove packages that are left over dependencies (no longer needed)
+  shell: apt-get -y autoremove
+  when: apt_autoremove
+  register: apt_autoremove_var
+  changed_when: "'Removing' in apt_autoremove_var.stdout"
+
+- name: APT | Clear local repository of retrieved package files
+  shell: apt-get -y autoclean
+  when: apt_autoclean
+  register: apt_autoclean_var
+  changed_when: "'Del' in apt_autoclean_var.stdout"
+
+- name: APT | Ensure the apt configuration in /etc/apt/apt.conf.ds/99customsettings is updated
+  template:
+    src: 99customsettings.j2
+    dest: /etc/apt/apt.conf.d/99customsettings
+    owner: root
+    group: root
+    mode: 0644
+
+- name: APT | Make sure the default packages are installed
+  apt:
+    pkg: "{{apt_default_packages|join(',')}}"
+    state: present

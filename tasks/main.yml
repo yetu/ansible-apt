@@ -1,2 +1,6 @@
 ---
-- include: unattended-upgrades.yml
+
+- include: apt.yml
+
+- include: unattended.yml
+  when: unattended_install

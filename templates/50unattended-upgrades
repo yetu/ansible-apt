@@ -14,7 +14,7 @@ Unattended-Upgrade::Package-Blacklist {
 //	"libc6-dev";
 //	"libc6-i686";
 {% if unattended_blacklist is defined %}{% for package in unattended_blacklist %}
-"{{package}}"
+"{{package}}";
 {% endfor %}{% endif %}
 };
 
