@@ -22,8 +22,8 @@
 
 - name: upgrade_now | Wait for ssh port to open again
   wait_for:
-    port=22
-    host="{{inventory_hostname}}"
+    port="{{upgrade_now_ssh_port}}"
+    host="{{ansible_ssh_host}}"
     delay=30
     timeout=180
     search_regex=OpenSSH
