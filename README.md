@@ -21,7 +21,7 @@ Ansible apt role which manages apt on a ubuntu/debian systems, it has two functi
 ---
 ## *********** Apt config ***********
 apt_update_source_list        : "no"  # Deploy Apt source.list ['no', 'copy', 'template']
-apt_update_source_list_mirror : "http://us.archive.ubuntu.com/ubuntu/" # apt mirror only works with  apt_update_source_list='template' mirror list launchpad.net/ubuntu/+archivemirrors
+apt_update_source_list_mirror : "http://us.archive.ubuntu.com/ubuntu/" # apt mirror only works with apt_update_source_list='template'
 apt_cache_valid_time          : 3600  # apt cache validity 
 apt_autoremove                : yes   # remove left over dependencies of packages no longer have
 apt_autoclean                 : yes   # clears out the local repository of retrieved package files
@@ -49,6 +49,14 @@ unattended_mail_error       : false  # Get emails only on errors. Default is to 
 unattended_remove_unused    : false  # Automatic removal of new unused dependencies after the upgrade
 unattended_automatic_reboot : false  # Automatically reboot *WITHOUT CONFIRMATION* if packages require that
 unattended_download_limit   : false  # Set to Integer representing kb/sec limit else false
+
+
+## *********** Update your system***********
+upgrade_now                     : False  # Enable upgrade now feature
+upgrade_now_force               : False  # Force upgrade and reboot if needed all checks will be ignored
+upgrade_now_pause_after_reboot  : 10 # Sleep time after machine reboots
+upgrade_now_first_boot_file     : "/var/run/ansible_apt_upgrade"
+upgrade_now_apt_reboot_file     : "/var/local/reboot-required"
 ```
 
 ## TODO
