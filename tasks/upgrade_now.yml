@@ -20,10 +20,20 @@
   command: shutdown -r now
   when: require_reboot is defined and require_reboot.stat.exists
 
+- name: upgrade_now | Check and set if ansible_ssh_host is set
+  set_fact:
+      apt_ssh_hostname: "{{ ansible_ssh_host }}"
+  when: ansible_ssh_host is defined
+
+- name: upgrade_now | if no ansible_ssh_host use inventory_hostname
+  set_fact:
+      apt_ssh_hostname: "{{ inventory_hostname }}"
+  when: ansible_ssh_host is not defined
+
 - name: upgrade_now | Wait for ssh port to open again
   wait_for:
-    port="{{upgrade_now_ssh_port}}"
-    host="{{ansible_ssh_host}}"
+    port="{{ upgrade_now_ssh_port }}"
+    host="{{ apt_ssh_hostname }}"
     delay=30
     timeout=180
     search_regex=OpenSSH
