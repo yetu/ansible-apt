@@ -25,6 +25,8 @@ apt_update_source_list_mirror : "http://us.archive.ubuntu.com/ubuntu/" # apt mir
 apt_cache_valid_time          : 3600  # apt cache validity 
 apt_autoremove                : yes   # remove left over dependencies of packages no longer have
 apt_autoclean                 : yes   # clears out the local repository of retrieved package files
+apt_default_key_urls          : []    # Default apt keys to install
+apt_default_repositories      : []    # Default apt repos to install
 apt_default_packages:                 # Default package to install 
   - python-apt
   - unattended-upgrades
