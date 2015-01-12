@@ -51,6 +51,18 @@
     group: root
     mode: 0644
 
+- name: APT | Make sure the default keys are added
+  apt_key:
+    url: "{{item}}"
+    state: present
+  with_items: "{{apt_default_key_urls}}"
+
+- name: APT | Make sure the default respositories are added
+  apt_repository:
+    repo: "{{item}}"
+    state: present
+  with_items: "{{apt_default_repositories}}"
+
 - name: APT | Make sure the default packages are installed
   apt:
     pkg: "{{apt_default_packages|join(',')}}"
