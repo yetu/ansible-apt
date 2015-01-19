@@ -2,7 +2,7 @@
 
 - name: APT | Ensure the "standard" sources list /etc/apt/sources.list is updated
   copy:
-    src: sources.list
+    src: sources_{{ ansible_distribution_release }}.list
     dest: /etc/apt/sources.list
     owner: root
     group: root
