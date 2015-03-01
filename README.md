@@ -3,7 +3,7 @@
 ansible-apt
 ==================
 
-Ansible apt role which manages apt on a ubuntu/debian systems, it has two functionalities:
+Ansible apt role which manages apt on a ubuntu 12.04 systems, it has two functionalities:
 
 1. Keeps your apt cache updated, cleans dependencies, removes .deb file and configures your apt system 
 
@@ -64,3 +64,4 @@ upgrade_now_apt_reboot_file     : "/var/local/reboot-required"
 ## TODO
 - make better tests
 - make ansible-galaxy role
+- Support trusty
