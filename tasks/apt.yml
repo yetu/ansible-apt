@@ -36,12 +36,14 @@
   when: apt_autoremove
   register: apt_autoremove_var
   changed_when: "'Removing' in apt_autoremove_var.stdout"
+  ignore_errors: yes
 
 - name: APT | Clear local repository of retrieved package files
   shell: apt-get -y autoclean
   when: apt_autoclean
   register: apt_autoclean_var
   changed_when: "'Del' in apt_autoclean_var.stdout"
+  ignore_errors: yes
 
 - name: APT | Ensure the apt configuration in /etc/apt/apt.conf.ds/99customsettings is updated
   template:
